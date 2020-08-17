@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Company Directory. A simple app that allows for creation, retrieval and modification of employees data."
+    />
+    <link rel="shortcut icon" href="assets/icons/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="vendors/bootstrap@4.3.1/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Company Directory</title>
+  </head>
+  <body>
+    <!-- Loader -->
+    <div class="loader-container">
+      <div class="loader"></div>
+    </div>
+
+    <header class="header px-0">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-2">
+        <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="assets/icons/people.svg" width="20px" alt="logo" class="align-text-bottom" />
+          <span>Company Directory</span>
+        </a>
+
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbar"
+          aria-controls="navbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item text-center">
+              <a class="nav-link" href="#" id="about" data-toggle="modal" data-target="#modal">About</a>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+
+      <!-- Search & add employees -->
+      <div class="form-row">
+      <button name="add" id="add" class="form-control btn btn-success btn-block mt-4 col-md-4 mx-auto my-md-5" data-toggle="modal" data-target="#modal">Add new employee</button>
+      <input type="text" name="search" id="search" class="form-control border-primary btn-block mt-4 col-md-4 mx-auto my-md-5" placeholder="Search ...">
+      </div>
+       
+      <p id="main-msg" class="text-center mb-0 mt-3">&nbsp;</p>
+      
+      <!-- Lists of results -->
+      <div id="lists" class="mb-3 mt-1"></div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modal" tabindex="-1" id="modal">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header bg-primary text-light">
+              <h5 class="modal-title mx-auto pl-3" id="modal">Modal title</h5>
+              <button type="button" class="close text-light ml-0" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="loader"></div>
+            </div>
+            <div class="modal-footer bg-primary p-4"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="container border-top mt-auto text-center py-3">
+      <small>Copyright &copy; 2020 <a href="https://github.com/mjablonski984">mjablonski984</a></small>
+    </footer>
+
+    <!-- Scripts-->
+    <script src="vendors/jquery@3.5.1/jquery-3.5.1.min.js"></script>
+    <script src="vendors/popper@1.14.7/popper.min.js"></script>
+    <script src="vendors/bootstrap@4.3.1/bootstrap.min.js"></script>
+    <script defer type="module" src="js/index.js"></script>
+  </body>
+</html>
