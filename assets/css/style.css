@@ -2,7 +2,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
 }
 
 html,
@@ -14,75 +13,83 @@ body {
 body {
   display: flex;
   flex-direction: column;
+  color: #073642;
 }
 
-td > button {
-  font-size: .5em !important;
-  letter-spacing: 2px;
-  padding-left: .25rem !important;
-  padding-right: .25rem !important;
+img {
+  pointer-events: none;
 }
 
-/* List */
+input, select {
+  background-color: #fff !important;
+}
+
+input:read-only, input:disabled {
+  background-color:  #fdf6e3 !important;
+}
+
+/* List of cards*/
 div#lists {
+  display: flex;
+  flex-wrap: wrap;
   max-height: 60vh;
   overflow-y: auto;
 }
 
-.sticky-top {
-  top: -2px !important;
+/* Cards */
+.card-div {
+  min-width: 33%;
 }
 
 /* Modal */
 .modal {
-  background-color: rgba(0, 0, 0, 0.9) !important;
+  background-color: rgba(0, 0, 0, 0.85) !important;
 }
-
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) ; 
-  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
 }
- 
+
 ::-webkit-scrollbar-thumb {
-  background: #18bc9c; 
-  border-radius: 10px;
+  background: #2aa198;
+  border-radius: 12px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #065c4b;
+  background: #23bdb0;
 }
-
 
 /* Loader */
 .loader-container {
-    background-color: rgba(0, 0, 0, 0.2);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-  }
-  
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
 .loader,
 .loader:before,
 .loader:after {
-  background: #18bc9c;
+  background: #2aa198;
   -webkit-animation: loader 1s infinite ease-in-out;
   animation: loader 1s infinite ease-in-out;
   width: 1em;
   height: 4em;
 }
+
 .loader {
-  color: #18bc9c;
+  color: #2aa198;
   text-indent: -9999em;
   margin: auto;
   position: relative;
@@ -93,20 +100,24 @@ div#lists {
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
 }
+
 .loader:before,
 .loader:after {
   position: absolute;
   top: 0;
   content: '';
 }
+
 .loader:before {
   left: -1.5em;
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
+
 .loader:after {
   left: 1.5em;
 }
+
 @-webkit-keyframes loader {
   0%,
   80%,
@@ -129,5 +140,24 @@ div#lists {
   40% {
     box-shadow: 0 -2em;
     height: 5em;
+  }
+}
+
+/* Media */
+
+@media (min-width: 768px) {
+  div#lists {
+    max-height: 69vh;
+  }
+}
+
+
+@media (min-width: 991px) {
+  .nav-form {
+    min-width: 500px;
+  }
+
+  div#lists {
+    max-height: 75vh;
   }
 }

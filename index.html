@@ -18,68 +18,77 @@
       <div class="loader"></div>
     </div>
 
-    <header class="header px-0">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-2">
+    <header class="header px-0 py-4 ">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-2">
         <div class="container">
-        <a class="navbar-brand" href="#">
-          <img src="assets/icons/people.svg" width="20px" alt="logo" class="align-text-bottom" />
-          <span>Company Directory</span>
-        </a>
+          <span class="navbar-brand font-italic">
+            <img src="assets/icons/people.svg" width="22px" alt="logo" class="align-text-bottom" />
+            <span>Company Directory</span>
+          </span>
 
-        <button
-          class="navbar-toggler border-0"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbar"
-          aria-controls="navbar"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbar"
+            aria-controls="navbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <div class="collapse navbar-collapse" id="navbar">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item text-center">
-              <a class="nav-link" href="#" id="about" data-toggle="modal" data-target="#modal">About</a>
-            </li>
-          </ul>
-        </div>
+          <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item nav-form mt-3 mt-lg-0">
+                <form class="form-inline">
+                  <button type="button" id="info" class="form-control btn btn-info col-xs-12 col-sm-12 col-md-2 mx-auto mb-2 mb-lg-0" data-toggle="modal" data-target="#modal">
+                    Info <img src="assets/icons/info.svg" class="align-text-bottom" alt="Info" width="20px"></button>
+                  <button type="button" name="add" id="add" class=" form-control btn btn-success col-xs-12 col-sm-12 col-md-2 mx-auto mb-2 mb-lg-0" data-toggle="modal" data-target="#modal">
+                    Add <img src="assets/icons/add.svg" class="align-text-bottom" alt="Add new" width="20px"></button>
+                  <input type="text" name="search" id="search" class="form-control border-success col-xs-12 col-sm-12 col-md-7 mx-auto mb-2 mb-lg-0" placeholder="Search ...">
+                </form>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
     </header>
 
-    <main class="container">
+    <main class="container pt-3 mt-5 mt-md-0">
 
-      <!-- Search & add employees -->
-      <div class="form-row">
-      <button name="add" id="add" class="form-control btn btn-success btn-block mt-4 col-md-4 mx-auto my-md-5" data-toggle="modal" data-target="#modal">Add new employee</button>
-      <input type="text" name="search" id="search" class="form-control border-primary btn-block mt-4 col-md-4 mx-auto my-md-5" placeholder="Search ...">
+      
+      <div class="card mb-3 mb-md-1 d-lg-none"> 
+      <p class="text-center mb-0"> <span class="text-success font-weight-bold lead font-italic">Welcome to Company Directory !</span><br>
+       <span class="font-weight-bold text-light">A simple personnel management solution</span></p>
       </div>
-       
-      <p id="main-msg" class="text-center mb-0 mt-3">&nbsp;</p>
+      <!-- Msg -->
+      <div class="mb-3 mb-lg-2">
+        <span id="main-msg" class="d-inline-block text-center text-md-left col-xs-12 col-md-7">&nbsp;</span>
+        <span id="counter" class="d-inline-block text-center float-md-right col-xs-12 col-md-3 text-light">&nbsp;</span>
+      </div>
       
       <!-- Lists of results -->
-      <div id="lists" class="mb-3 mt-1"></div>
+      <div id="lists" class="mb-2"></div>
 
       <!-- Modal -->
       <div class="modal fade" id="modal" tabindex="-1" id="modal">
         <div class="modal-dialog modal-dialog-centered modal-lg">
           <div class="modal-content">
-            <div class="modal-header bg-primary text-light">
+            <div class="modal-header bg-info text-light">
               <h5 class="modal-title mx-auto pl-3" id="modal">Modal title</h5>
               <button type="button" class="close text-light ml-0" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body bg-light">
               <div class="loader"></div>
             </div>
-            <div class="modal-footer bg-primary p-4"></div>
+            <div class="modal-footer bg-info p-2">&nbsp;</div>
           </div>
         </div>
       </div>
     </main>
 
-    <footer class="container border-top mt-auto text-center py-3">
+    <footer class="container border-top mt-auto text-center text-light py-3">
       <small>Copyright &copy; 2020 <a href="https://github.com/mjablonski984" target="_blank">mjablonski984</a></small>
     </footer>
 

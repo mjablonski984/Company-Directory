@@ -29,10 +29,6 @@ $('document').ready(function () {
   // Events for action buttons (display modals)
   $('#lists').click(function(e){
     let searched;
-    if (e.target.classList.contains('display-employee')) {
-      searched = filterResultById(e.target.dataset.id);
-      Ui.displayEmployeeForm(searched,departments);
-    }
     if (e.target.classList.contains('edit-employee')) {
       searched = filterResultById(e.target.dataset.id);
       Ui.editEmployeeForm(searched,departments);
@@ -48,13 +44,12 @@ $('document').ready(function () {
     let word = this.value.toLowerCase().trim();
     
       let filteredArr = employees.filter(e => {
-        const id = e.id == word ;
         const fName = e.firstName.toLowerCase().includes(word) ;
         const lName = e.lastName.toLowerCase().includes(word) ;
         const email = e.email.toLowerCase().includes(word) ;
         const job = e.jobTitle.toLowerCase().includes(word) ;
         const department = e.department.toLowerCase().includes(word) ;
-        return id || fName || lName || email || job || department;
+        return fName || lName || email || job || department;
       });
   
     UI.displayAllEmployees(filteredArr);
@@ -66,51 +61,53 @@ $('document').ready(function () {
   
   // Modal events
   $('.modal-content').on('click', function (e) {
+    // Delete record
     if(e.target.id === 'confirm-delete'){
      const id =  e.target.dataset.id;
      postData('/libs/php/deletePersonnel.php', `id=${id}`, updateList);
      Ui.showMsg('#main-msg',`Record deleted successfully`,'success');
     }
-
-    if(e.target.id === 'add-btn'){
+    // Add / update record
+    if(e.target.id === 'add-btn' || e.target.id === 'edit-btn'){
+    
       e.preventDefault(e);
 
       const isValidEmail = Validation.validateEmail($('#email').val());
       const isValidFName = Validation.validateName($('#firstName').val());
       const isValidLName = Validation.validateName($('#lastName').val());
 
-      if (isValidFName && isValidLName && isValidEmail && $('#department').val()) {
-        let data = $('#addEmployeeForm').serialize();
-        postData('/libs/php/insertPersonnel.php', data, updateList);
-        $('#modal').modal('hide');
-        Ui.showMsg('#main-msg',`New record added`,'success');
-      }else {
-        Ui.showMsg('#modal-msg','Please enter valid data into all required fields','warning');
+      if(e.target.id === 'add-btn' ){
+
+        if (isValidFName && isValidLName && isValidEmail && $('#department').val()) {
+          let data = $('#addEmployeeForm').serialize();
+          postData('/libs/php/insertPersonnel.php', data, updateList);
+          $('#modal').modal('hide');
+          Ui.showMsg('#main-msg',`New record added`,'success');
+        }else {
+          Ui.showMsg('#modal-msg','Please enter valid data into all required fields','warning');
+        }
       }
-    }
 
-    if(e.target.id === 'edit-btn'){
-      e.preventDefault(e);
-
-      const isValidEmail = Validation.validateEmail($('#email').val());
-      const isValidFName = Validation.validateName($('#firstName').val());
-      const isValidLName = Validation.validateName($('#lastName').val());
-
-      if ($('#id').val() && isValidFName && isValidLName && isValidEmail && $('#department').val()) {
-        let data = $('#employeeForm').serialize();
-      
-        postData('/libs/php/updatePersonnel.php', data, updateList);
-       
-        setTimeout(()=>{
-        let employee = employees.filter(e => e.id === $('#id').val())[0];
-        Ui.editEmployeeForm(employee, departments);
-        Ui.showMsg('#modal-msg','Record updated successfully','success');
-      },1000);   
+      if(e.target.id === 'edit-btn'){
         
-      }else {
-        Ui.showMsg('#modal-msg','Please enter valid data into all required fields','warning');
+        if ($('#id').val() && isValidFName && isValidLName && isValidEmail && $('#department').val()) {
+          let data = $('#employeeForm').serialize();  
+          postData('/libs/php/updatePersonnel.php', data, updateList);
+          $('#modal').modal('hide');
+          Ui.showMsg('#main-msg','Record updated successfully','success');   
+        }else {
+          Ui.showMsg('#modal-msg','Please enter valid data into all required fields','warning');
+        }
       }
-    }
+  }
+
+    // Clear modal on close
+    if(e.target.classList.contains('close') || e.target.classList.contains('close-modal')){
+    $('.modal-title').html('');
+    $('.modal-body').html('<div class="loader"></div>');
+    $('.modal-footer').html('&nbsp;');
+    $('#modal').modal('hide');
+  }
 
 
   }).on('change', function (e) {
@@ -124,7 +121,8 @@ $('document').ready(function () {
       $('#location').val(location.name);
   }});
 
-  $('#about').click(Ui.displayAbout);
+
+  $('#info').click(Ui.displayAbout);
 });
 
 

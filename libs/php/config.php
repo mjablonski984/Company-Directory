@@ -6,7 +6,7 @@
 	$cd_port = 3306;
 	$cd_socket = "";
 
-	// // for localhost use :
+	// for localhost use :
 	// $cd_host = "127.0.0.1";
 	// $cd_user = "root";
 	// $cd_password = "";
